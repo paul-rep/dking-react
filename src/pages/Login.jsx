@@ -53,10 +53,22 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
+  ${({ home }) => home && `
+    background: white;
+    border: 2px solid black;
+    color: black;
+  `}
   &:disabled {
     color: green;
     cursor: not-allowed;
   }
+`;
+
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 `;
 
 const Link = styled.a`
@@ -95,9 +107,12 @@ const Login = () => {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           required />
-          <Button onClick={handleClick} disabled={isFetching}>
-            LOGIN
-          </Button>
+          <ButtonsContainer>
+            <Button onClick={handleClick} disabled={isFetching}>
+              LOGIN
+            </Button>
+            <Button onClick={()=> history.push("/")} home={true}>Go Home</Button>
+          </ButtonsContainer>
           {error && <Error>Something went wrong...</Error>}
           <Link to="/register">FORGOT PASSWORD?</Link>
           <Link onClick={()=> history.push("/register")}>CREATE A NEW ACCOUNT</Link>

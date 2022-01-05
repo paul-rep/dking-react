@@ -54,6 +54,17 @@ const Button = styled.button`
   background-color: #F44072;
   color: white;
   cursor: pointer;
+  ${({ home }) => home && `
+    background: white;
+    border: 2px solid black;
+    color: black;
+  `}
+`;
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 `;
 
 const Register = () => {
@@ -90,7 +101,10 @@ const Register = () => {
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button type="submit">CREATE</Button>
+          <ButtonsContainer>
+            <Button type="submit">CREATE</Button>
+            <Button onClick={()=> history.push("/")} home={true}>Go Home</Button>
+          </ButtonsContainer>
         </Form>
       </Wrapper>
     </Container>
