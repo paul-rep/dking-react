@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { login } from "../redux/apiCalls";
 import { mobile } from "../components/responsive/responsive";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
+
 
 const Container = styled.div`
   width: 100vw;
@@ -72,6 +74,8 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const { isFetching, error } = useSelector((state) => state.user);
   console.log(error);
   const handleClick = (e) => {
@@ -95,8 +99,8 @@ const Login = () => {
             LOGIN
           </Button>
           {error && <Error>Something went wrong...</Error>}
-          <Link>FORGOT PASSWORD?</Link>
-          <Link to="/register">CREATE A NEW ACCOUNT</Link>
+          <Link to="/register">FORGOT PASSWORD?</Link>
+          <Link onClick={()=> history.push("/register")}>CREATE A NEW ACCOUNT</Link>
         </Form>
       </Wrapper>
     </Container>
